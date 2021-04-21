@@ -1,88 +1,47 @@
-import React, { useCallback, useState, useMemo } from "react";
-import logo from "./logo.svg";
-import "./App.css";
-import "./toggle-button.css";
-import * as polkadotCryptoUtils from "@polkadot/util-crypto";
-import * as polkadotUtils from "@polkadot/util";
+import React from 'react';
+import { IonApp, IonRouterOutlet, IonSplitPane } from '@ionic/react';
+import { IonReactRouter } from '@ionic/react-router';
+import { Redirect, Route } from 'react-router-dom';
+import Menu from './components/Menu';
+import Page from './pages/Page';
 
-const PLM_PREFIX = 5;
+/* Core CSS required for Ionic components to work properly */
+import '@ionic/react/css/core.css';
 
-function App() {
-  const [addressType, setAddressType] = useState<"EVM" | "PLM">("PLM");
-  const [addressInput, setAddressInput] = useState<string>();
-  const [addressPrefix, setAddressPrefix] = useState(PLM_PREFIX);
+/* Basic CSS for apps built with Ionic */
+import '@ionic/react/css/normalize.css';
+import '@ionic/react/css/structure.css';
+import '@ionic/react/css/typography.css';
 
-  const plmToEvm = useCallback(() => {
-    if (
-      addressInput &&
-      addressType === "PLM" &&
-      polkadotCryptoUtils.checkAddress(addressInput, addressPrefix)[0]
-    ) {
-      return polkadotUtils.u8aToHex(
-        polkadotCryptoUtils.addressToEvm(addressInput, true)
-      );
-    } else {
-      return "invalid";
-    }
-  }, [addressInput, addressType, addressPrefix]);
+/* Optional CSS utils that can be commented out */
+import '@ionic/react/css/padding.css';
+import '@ionic/react/css/float-elements.css';
+import '@ionic/react/css/text-alignment.css';
+import '@ionic/react/css/text-transformation.css';
+import '@ionic/react/css/flex-utils.css';
+import '@ionic/react/css/display.css';
 
-  const evmToPlm = useCallback(() => {
-    if (
-      addressInput &&
-      addressType === "EVM" &&
-      polkadotCryptoUtils.isEthereumChecksum(addressInput)
-    ) {
-      return polkadotCryptoUtils.evmToAddress(addressInput);
-    } else {
-      return "invalid";
-    }
-  }, [addressInput, addressType]);
+/* Theme variables */
+import './theme/variables.css';
 
-  const resultAddress = useMemo(() => {
-    if (addressType === "EVM") return evmToPlm();
-    else return plmToEvm();
-  }, [evmToPlm, plmToEvm, addressType]);
-
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Current address scheme: {addressType}</p>
-        <label className="switch">
-          <input
-            type="checkbox"
-            onChange={() => {
-              if (addressType === "EVM") setAddressType("PLM");
-              else setAddressType("EVM");
-            }}
-          />
-          <span className="slider round"></span>
-        </label>
-        <p>Change address prefix</p>
-        <input
-          type="text"
-          value={addressPrefix}
-          onChange={(e) => setAddressPrefix(Number.parseInt(e.target.value))}
-        ></input>
-        <p>Input address</p>
-        <input
-          type="text"
-          value={addressInput}
-          onChange={(e) => setAddressInput(e.target.value)}
-        ></input>
-        <p>{addressInput}</p>
-        <p>{resultAddress}</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App: React.FC = () => {
+    return (
+        <IonApp>
+            <IonReactRouter>
+                <IonSplitPane contentId="main">
+                    <Menu />
+                    <IonRouterOutlet id="main">
+                        <Route path="/" exact={true}>
+                            <Redirect to="/page/Inbox" />
+                        </Route>
+                        <Route path="/page/:name" exact={true}>
+                            <Page />
+                        </Route>
+                    </IonRouterOutlet>
+                </IonSplitPane>
+            </IonReactRouter>
+        </IonApp>
+    );
+};
 
 export default App;

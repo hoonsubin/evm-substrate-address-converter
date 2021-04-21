@@ -1,0 +1,7 @@
+{
+  "name": "polkatools",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}

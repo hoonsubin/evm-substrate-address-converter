@@ -1,35 +1,67 @@
 {
-  "name": "evm-substrate-address-converter",
-  "version": "0.1.0",
+  "name": "polkatools",
+  "version": "0.0.1",
   "homepage": "https://polkatools.hoonkim.me",
+  "description": "A web-based tool for working with Substrate-based keys and signatures",
   "private": true,
+  "dependencies": {
+    "@capacitor/core": "2.4.7",
+    "@ionic/react": "^5.6.4",
+    "@ionic/react-router": "^5.6.4",
+    "@polkadot/api": "^4.6.2",
+    "@polkadot/util": "^6.2.1",
+    "@polkadot/util-crypto": "^6.2.1",
+    "ionicons": "^5.5.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "4.0.3",
+    "web-vitals": "^1.1.1",
+    "web3-utils": "^1.3.5",
+    "workbox-background-sync": "^6.1.5",
+    "workbox-broadcast-update": "^6.1.5",
+    "workbox-cacheable-response": "^6.1.5",
+    "workbox-core": "^6.1.5",
+    "workbox-expiration": "^6.1.5",
+    "workbox-google-analytics": "^6.1.5",
+    "workbox-navigation-preload": "^6.1.5",
+    "workbox-precaching": "^6.1.5",
+    "workbox-range-requests": "^6.1.5",
+    "workbox-routing": "^6.1.5",
+    "workbox-strategies": "^6.1.5",
+    "workbox-streams": "^6.1.5"
+  },
   "devDependencies": {
+    "@capacitor/cli": "2.4.7",
+    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/react": "^11.2.5",
+    "@testing-library/user-event": "^13.1.5",
     "@types/jest": "^26.0.22",
     "@types/node": "^14.14.41",
     "@types/react": "^17.0.3",
     "@types/react-dom": "^17.0.3",
-    "@testing-library/jest-dom": "^5.11.10",
-    "@testing-library/react": "^11.2.6",
-    "@testing-library/user-event": "^13.1.5",
+    "@types/react-router": "^5.1.13",
+    "@types/react-router-dom": "^5.1.7",
+    "eslint-config-prettier": "^8.2.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-testing-library": "^4.1.0",
+    "prettier": "^2.2.1",
     "typescript": "^4.2.4"
   },
-  "dependencies": {
-    "@polkadot/api": "^4.6.2",
-    "@polkadot/util": "^6.2.1",
-    "@polkadot/util-crypto": "^6.2.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-scripts": "^4.0.3"
-    
-  },
   "scripts": {
+    "serve": "ionic serve",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
   "browserslist": {
     "production": [
