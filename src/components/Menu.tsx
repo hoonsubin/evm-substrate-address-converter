@@ -50,6 +50,12 @@ const appPages: AppPage[] = [
         mdIcon: paperPlaneSharp,
     },
     {
+        title: 'Substrate Address Converter',
+        url: '/page/convert',
+        iosIcon: paperPlaneOutline,
+        mdIcon: paperPlaneSharp,
+    },
+    {
         title: 'Favorites',
         url: '/page/Favorites',
         iosIcon: heartOutline,
