@@ -9,7 +9,7 @@ const PLM_PREFIX = 5;
 
 function App() {
   const [addressType, setAddressType] = useState<"EVM" | "PLM">("PLM");
-  const [addressInput, setAddressInput] = useState<string>();
+  const [addressInput, setAddressInput] = useState<string>("");
   const [addressPrefix, setAddressPrefix] = useState(PLM_PREFIX);
 
   const plmToEvm = useCallback(() => {
@@ -32,7 +32,7 @@ function App() {
       addressType === "EVM" &&
       polkadotCryptoUtils.isEthereumChecksum(addressInput)
     ) {
-      return polkadotCryptoUtils.evmToAddress(addressInput);
+      return polkadotCryptoUtils.evmToAddress(addressInput, PLM_PREFIX);
     } else {
       return "invalid";
     }
