@@ -32,7 +32,7 @@ function App() {
       addressType === "EVM" &&
       polkadotCryptoUtils.isEthereumChecksum(addressInput)
     ) {
-      return polkadotCryptoUtils.evmToAddress(addressInput, PLM_PREFIX);
+      return polkadotCryptoUtils.evmToAddress(addressInput, addressPrefix);
     } else {
       return "invalid";
     }
