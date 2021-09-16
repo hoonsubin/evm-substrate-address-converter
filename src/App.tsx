@@ -5,17 +5,17 @@ import "./toggle-button.css";
 import * as polkadotCryptoUtils from "@polkadot/util-crypto";
 import * as polkadotUtils from "@polkadot/util";
 
-const PLM_PREFIX = 5;
+const SS58_PREFIX = 5;
 
 function App() {
-  const [addressType, setAddressType] = useState<"EVM" | "PLM">("PLM");
+  const [addressType, setAddressType] = useState<"H160" | "SS58">("SS58");
   const [addressInput, setAddressInput] = useState<string>("");
-  const [addressPrefix, setAddressPrefix] = useState(PLM_PREFIX);
+  const [addressPrefix, setAddressPrefix] = useState(SS58_PREFIX);
 
   const plmToEvm = useCallback(() => {
     if (
       addressInput &&
-      addressType === "PLM" &&
+      addressType === "SS58" &&
       polkadotCryptoUtils.checkAddress(addressInput, addressPrefix)[0]
     ) {
       return polkadotUtils.u8aToHex(
@@ -29,7 +29,7 @@ function App() {
   const evmToPlm = useCallback(() => {
     if (
       addressInput &&
-      addressType === "EVM" &&
+      addressType === "H160" &&
       polkadotCryptoUtils.isEthereumChecksum(addressInput)
     ) {
       return polkadotCryptoUtils.evmToAddress(addressInput, addressPrefix);
@@ -39,7 +39,7 @@ function App() {
   }, [addressInput, addressPrefix, addressType]);
 
   const resultAddress = useMemo(() => {
-    if (addressType === "EVM") return evmToPlm();
+    if (addressType === "H160") return evmToPlm();
     else return plmToEvm();
   }, [evmToPlm, plmToEvm, addressType]);
 
@@ -52,8 +52,8 @@ function App() {
           <input
             type="checkbox"
             onChange={() => {
-              if (addressType === "EVM") setAddressType("PLM");
-              else setAddressType("EVM");
+              if (addressType === "H160") setAddressType("SS58");
+              else setAddressType("H160");
             }}
           />
           <span className="slider round"></span>
