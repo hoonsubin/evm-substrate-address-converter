@@ -36,7 +36,7 @@ function App() {
     } else {
       return "invalid";
     }
-  }, [addressInput, addressType]);
+  }, [addressInput, addressPrefix, addressType]);
 
   const resultAddress = useMemo(() => {
     if (addressType === "EVM") return evmToPlm();
