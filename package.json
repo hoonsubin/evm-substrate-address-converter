@@ -1,7 +1,7 @@
 {
   "name": "evm-substrate-address-converter",
   "version": "0.1.0",
-  "homepage": "https://polkatools.hoonkim.me",
+  "homepage": "https://hoonsubin.github.io/evm-substrate-address-converter/",
   "private": true,
   "devDependencies": {
     "@testing-library/jest-dom": "^5.11.10",
