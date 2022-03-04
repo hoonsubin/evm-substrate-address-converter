@@ -30,7 +30,7 @@ function App() {
     if (
       addressInput &&
       addressType === "H160" &&
-      polkadotCryptoUtils.isEthereumChecksum(addressInput)
+      polkadotCryptoUtils.isEthereumAddress(addressInput)
     ) {
       return polkadotCryptoUtils.evmToAddress(addressInput, addressPrefix);
     } else {
